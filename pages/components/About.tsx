@@ -3,6 +3,10 @@ import ButtonCustom from "./ButtonCustom";
 import { BiDownload } from "react-icons/bi";
 import { motion } from "framer-motion";
 
+type Props = {
+  title: string;
+};
+
 const banner = {
   animate: {
     transition: {
@@ -23,34 +27,32 @@ const letterAni = {
   },
 };
 
-// const AnimatedLetters = ({ title }) => (
-//   <motion.span
-//     className="row-title"
-//     variants={disabled ? null : banner}
-//     initial="initial"
-//     animate="animate"
-//   >
-//     {[...title].map((letter) => (
-//       <motion.span
-//         className="row-letter"
-//         variants={disabled ? null : letterAni}
-//       >
-//         {letter}
-//       </motion.span>
-//     ))}
-//   </motion.span>
-// );
+const AnimatedLetters: NextPage<Props> = ({ title }: Props) => (
+  <motion.span
+    className=""
+    variants={banner}
+    initial="initial"
+    animate="animate"
+  >
+    {Array.from(title.split("")).map((letter: string) => (
+      <motion.span className="" variants={letterAni}>
+        {letter}
+      </motion.span>
+    ))}
+  </motion.span>
+);
 
 const About: NextPage = () => {
   return (
     <div className="flex flex-col max-w-[78rem] w-4/5 h-screen mx-auto justify-center">
-      <motion.div variants={banner} className="dark:text-GreenCustom w-fit">
-        Hi, my name is
-      </motion.div>
+      <div className="dark:text-GreenCustom w-fit">Hi, my name is</div>
       <br />
-      <div className="dark:text-LightestSlateCustom lg:text-7xl font-bold w-fit">
-        Andika Rizki Fadhila.
-      </div>
+      <motion.div
+        variants={banner}
+        className="dark:text-LightestSlateCustom lg:text-7xl font-bold w-fit"
+      >
+        <AnimatedLetters title="Andika Rizki Fadhila" />
+      </motion.div>
       <br />
       <div className="dark:text-SlateCustom lg:text-7xl font-bold w-fit">
         I build things for the web.
